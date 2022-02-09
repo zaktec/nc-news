@@ -8,7 +8,7 @@ const Home = () =>  {
 
     useEffect(()  => {
         getMessage().then((res)=> {
-         console.log(res)
+       //  console.log(res)
          setMsg(res)
 
         });

@@ -3,18 +3,19 @@ import "../App.css";
 import { getArticles } from "../utils/api";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+//import Votes from "./Votes";
 
 const ArticleList = () => {
   const [articlelist, setArticleList] = useState([]);
-  const params = useParams();
-  console.log(params);
+  const { topic_name } = useParams();
+  console.log(topic_name);
 
   useEffect(() => {
-    getArticles().then((res) => {
+    getArticles(topic_name).then((res) => {
       //  console.log(res);
       setArticleList(res);
     });
-  }, []);
+  }, [topic_name]);
 
   return (
     <main className="ArticleList">

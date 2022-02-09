@@ -8,7 +8,7 @@ const TopicList = () => {
 
   useEffect(() => {
     getTopics().then((res) => {
-      console.log(res);
+     // console.log(res);
       setTopicList(res);
     });
   }, []);

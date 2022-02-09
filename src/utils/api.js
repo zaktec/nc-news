@@ -19,12 +19,16 @@ export const getTopics = () => {
   });
 };
 
-export const getArticles = () => {
-  return newsApi.get("/articles").then((res) => {
+export const getArticles = (topic_name) => {
+  let path = "/articles";
+  if (topic_name) path += `?article_topic=${topic_name}`
+  return newsApi.get(path).then((res) => {
      // console.log(res)
     return res.data.articles;
   });
 };
+
+
 export const getSingleArticle = (article_id) => {
   return newsApi.get(`/articles/${article_id}`).then((res) => {
       //console.log(res)
@@ -37,5 +41,12 @@ export const patchArticleVote = (article_id) => {
   .then((res) => {
       //console.log(res.data)
     return res.data.article;
+  });
+};
+
+export const getCommentApi = (article_id) => {
+  return newsApi.get(`/articles/${article_id}/comments`).then(({data}) => {
+      //console.log(data)
+    return data.comments;
   });
 };
