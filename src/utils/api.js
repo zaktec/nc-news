@@ -50,3 +50,22 @@ export const getCommentApi = (article_id) => {
     return data.comments;
   });
 };
+
+//"DELETE /api/comments/:comment_id"
+
+export const deleteCommentApi = (comment_id) => {
+  return newsApi.delete(`/comments/${comment_id}`)
+  .then(({data}) => {
+    return data.comments;
+   
+  });
+};
+
+export const postCommentApi = (article_id, newAuthor, newComment) => {
+  return newsApi.post
+  (`/articles/${article_id}/comments&${newAuthor}&${newComment}`)
+  .then(({data}) => {
+    console.log(data);
+   
+  });
+};

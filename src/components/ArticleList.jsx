@@ -8,11 +8,11 @@ import { useParams } from "react-router-dom";
 const ArticleList = () => {
   const [articlelist, setArticleList] = useState([]);
   const { topic_name } = useParams();
-  console.log(topic_name);
+ // console.log(topic_name);
 
   useEffect(() => {
     getArticles(topic_name).then((res) => {
-      //  console.log(res);
+      // console.log(res);
       setArticleList(res);
     });
   }, [topic_name]);
