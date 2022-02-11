@@ -11,6 +11,7 @@ const Article = () => {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
   const [loading, setLoading] = useState(true);
+  const [comments, setComments] = useState([]);
 
   //console.log(article_id,  "<<<<<")
   useEffect(() => {
@@ -51,10 +52,12 @@ const Article = () => {
 
           <h3>Article Comments </h3>
           
-            <PostComment article_id={article.article_id} />
+            <PostComment article_id={article.article_id} 
+             setComments = {setComments} />
           
 
-          <Comments article_id={article.article_id} />
+          <Comments article_id={article.article_id}
+          comments={ comments} setComments={setComments} />
         </div>
       )}
     </div>

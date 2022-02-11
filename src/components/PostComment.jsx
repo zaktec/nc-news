@@ -1,32 +1,44 @@
 import React, { useState } from "react";
 import "../App.css";
-import { postCommentApi } from "../utils/api";
+import {  postCommentApi } from "../utils/api";
 
-const PostComment = (article_id) => {
+const PostComment = (props) => {
+    const{ article_id, setComments} = props;
   const [displayPost, setPostDisplay] = useState(false);
   const [newComment, setNewComments] = useState("");
-  const [newAuthor, setNewAuthor] = useState([]);
+  const [newAuthor, setNewAuthor] = useState("");
 
-  //   useEffect(() => {
-  //     console.log(article_id);
-  //     // postCommentApi(article_id).then((comments) => {
-  //     //  setNewComments(comments);
-  //     // });
-  //   });
 
-  const handleChange = (event) => {
-    if (event.target.name === "newComment") {
-      setNewComments(event.target.value);
-      //console.log(newComment);
-    } else setNewAuthor(event.target.value);
-    // console.log(event.target.name)
-  };
+//   const handleChange = (event) => {
+//     if (event.target.name === "newComment") {
+//        console.log(newComment);
+//       setNewComments(event.target.value);
+//      } else setNewAuthor(event.target.value);
+//      console.log(event.target.name)
+//   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    postCommentApi(article_id);
+    const newObject = {comment_author: newAuthor, comment_body: newComment } 
+    console.log(newComment, newAuthor)
+    console.log(newObject)
+    postCommentApi(article_id, newObject)
+    setComments((currentValue)=>{
+        const newCommentList = currentValue.map((comment)=>{
+            return  {...comment}
+        })
+        newObject.comment_id = 0;
+        newObject.comment_votes = 0;
+        newObject.comment_created =  "created now";
+     newCommentList.unshift(newObject) 
+     
+     return newCommentList;
+
+    })
+
   };
 
+ console.log(newComment)
   return (
     <div>
       <button
@@ -35,7 +47,9 @@ const PostComment = (article_id) => {
             return !currentValue;
           })
         }
-          >Post Comment</button>
+      >
+        Post Comment
+      </button>
       {displayPost ? (
         <div>
           <form onSubmit={handleSubmit}>
@@ -43,14 +57,14 @@ const PostComment = (article_id) => {
               <p>Please Insert Your comment</p>
               <input
                 name="newComment"
-                placeholder="comment"
-                onChange={handleChange}
+                placeholder="Insert Comment"
+                onChange={(event)=> setNewComments(event.target.value) }
                 value={newComment}
               />
               <input
                 name="newAuthor"
-                placeholder="Author"
-                onChange={handleChange}
+                placeholder="Author Name"
+                onChange={(event)=> setNewAuthor(event.target.value)}
                 value={newAuthor}
               />
             </label>

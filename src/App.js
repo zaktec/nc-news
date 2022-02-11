@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ArticleList from './components/ArticleList';
 import TopicList from './components/TopicList';
 import Article from './components/Article';
+import SortArticles from './components/SortArticles';
 
 
 
@@ -21,14 +22,16 @@ function App() {
         <Routes>
         <Route path= "/" element ={ <Home />}></Route>
         <Route path= "*" element ={ <Home />}></Route>
-        <Route path= "/articlelist" element ={ <ArticleList />}></Route>
+        {/* <Route path= "/articlelist" element ={ <ArticleList />}></Route> */}
+        <Route path= "/articlelist" element ={ <SortArticles />}></Route>
+        
         <Route path= "/topiclist" element ={ <TopicList />}></Route>
         <Route path= "/articles/:article_id" element ={ <Article />}></Route>
         <Route path= "/articlelist/:topic_name" element ={ <ArticleList />}></Route>
       
 
         </Routes>
-        <Footer />
+        <Footer year={new Date().getFullYear()} />
       </div>
     </BrowserRouter>
   );

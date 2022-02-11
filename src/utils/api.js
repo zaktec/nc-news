@@ -19,14 +19,25 @@ export const getTopics = () => {
   });
 };
 
-export const getArticles = (topic_name) => {
-  let path = "/articles";
-  if (topic_name) path += `?article_topic=${topic_name}`
-  return newsApi.get(path).then((res) => {
-     // console.log(res)
-    return res.data.articles;
-  });
-};
+// export const getArticles = (topic_name) => {
+//   let path = "/articles";
+//   if (topic_name) path += `?article_topic=${topic_name}`
+//   return newsApi.get(path).then((res) => {
+//      // console.log(res)
+//     return res.data.articles;
+//   });
+// };
+
+
+export const getArticles = (topic_name, sort_by) =>{
+ return newsApi.get(`/articles`,{
+   params: { article_topic: topic_name, sort_by },
+ })
+ .then (({ data }) => {
+   return data.articles;
+ })
+
+}
 
 
 export const getSingleArticle = (article_id) => {
@@ -61,11 +72,11 @@ export const deleteCommentApi = (comment_id) => {
   });
 };
 
-export const postCommentApi = (article_id, newAuthor, newComment) => {
+export const postCommentApi = (article_id, resBody) => {
   return newsApi.post
-  (`/articles/${article_id}/comments&${newAuthor}&${newComment}`)
+  (`/articles/${article_id}/comments`, resBody)
   .then(({data}) => {
-    console.log(data);
+    return data.comments;
    
   });
 };

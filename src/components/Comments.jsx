@@ -2,10 +2,8 @@ import { useEffect, useState } from "react";
 import { getCommentApi } from "../utils/api";
 import DeleteComment from "./DeleteComment";
 
-const Comments = ({ article_id }) => {
+const Comments = ({ article_id, comments, setComments }) => {
 
-
-  const [comments, setComments] = useState([]);
   const [displayComments, setDisplayComments] = useState(false);
   //console.log(displayComments);
 
