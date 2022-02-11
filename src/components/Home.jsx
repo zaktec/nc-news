@@ -15,7 +15,7 @@ const Home = () =>  {
     },[])
 
     return (
-        <div className='Home'>
+        <div className='HomeCss'>
         <h1>Home </h1>
         <p>{msg}</p>
         </div>

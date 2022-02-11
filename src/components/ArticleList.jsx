@@ -27,7 +27,7 @@ const ArticleList = (props) => {
 
   return (
 
-    <main className="ArticleList">
+    <div className="ArticleListCss">
       <h1> ArticleList </h1>
       <ul>
         {articlelist.map((article) => {
@@ -41,7 +41,7 @@ const ArticleList = (props) => {
           );
         })}
       </ul>
-    </main>
+    </div>
   );
 };
 export default ArticleList;

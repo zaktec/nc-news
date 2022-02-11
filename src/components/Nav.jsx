@@ -4,8 +4,8 @@ import "../App.css";
 
 const Nav = () => {
   return (
-    <nav className="NavBar">
-      <h1>Nav </h1>
+    <nav className="NavCss">
+      <h1>Menu </h1>
       <Link className="Nav__Link" to="/">
         Home |
       </Link>

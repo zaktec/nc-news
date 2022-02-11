@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import ArticleList from "./ArticleList";
+import "../App.css";
+
 
 const SortArticles = () => {
   const [sortBy, setSortBy] = useState("article_title");
@@ -13,8 +15,8 @@ const SortArticles = () => {
   };
 
   return (
-    <div>
-      <div>
+    <div >
+      <main className="SortArticleClass" >
         <h1>ArticleList </h1>
         <p>Choose a column to sort the articles List </p>
         <form onSubmit={handleSubmit}>
@@ -29,7 +31,7 @@ const SortArticles = () => {
           <input type="submit" value="Submit" />
         </form>
         <p>Click the "Submit" button .</p>
-      </div>
+      </main>
       <ArticleList sortBy = {sortBy} />
     </div>
   );

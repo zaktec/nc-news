@@ -5,30 +5,50 @@ import { Link } from "react-router-dom";
 
 const TopicList = () => {
   const [topiclist, setTopicList] = useState([]);
+  const [isLoading, setIsLoading] =useState(true)
 
   useEffect(() => {
     getTopics().then((res) => {
-     // console.log(res);
+      // console.log(res);
       setTopicList(res);
+      setIsLoading(false)
     });
   }, []);
 
+  if (isLoading) return <p>Loading....</p>
+  
   return (
-    <main className="TopicList">
+    <main className="TopicListClass">
       <h1> TopicList </h1>
-      <ul>
+       <ul className = "TopicList">
         {topiclist.map((topic) => {
-          return(
-              <Link key= {topic.topic_slug} to = {`/articlelist/${topic.topic_slug}`}>
-         <li> 
-          {topic.topic_slug}
-          <p>{topic.topic_description}</p>
-           </li>
-           </Link>
-        )
+          return (
+             <li key={topic.topic_slug}>
+               <h3>
+                 <Link to={`/articlelist/${topic.topic_slug}`}>
+                   {topic.topic_slug}</Link>
+             </h3>
+         
+               <p> {topic.topic_description}</p>
+             </li>
+          )
         })}
-      </ul>
+    
+      </ul> 
     </main>
   );
 };
 export default TopicList;
+
+
+   // return (
+          //   <Link
+          //     key={topic.topic_slug}
+          //     to={`/articlelist/${topic.topic_slug}`}
+          //   >
+          //     <li>
+          //       <h3>{topic.topic_slug}</h3>
+          //       {/* <p> {topic.topic_description}</p> */}
+          //     </li>
+          //   </Link>
+          // );
