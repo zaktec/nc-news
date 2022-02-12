@@ -15,8 +15,9 @@ const SortArticles = () => {
   };
 
   return (
-    <div >
+    
       <main className="SortArticleClass" >
+        <div>
         <h1>ArticleList </h1>
         <p>Choose a column to sort the articles List </p>
         <form onSubmit={handleSubmit}>
@@ -31,9 +32,9 @@ const SortArticles = () => {
           <input type="submit" value="Submit" />
         </form>
         <p>Click the "Submit" button .</p>
-      </main>
+      </div>
       <ArticleList sortBy = {sortBy} />
-    </div>
+    </main>
   );
 };
 
